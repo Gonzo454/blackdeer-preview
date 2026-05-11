@@ -6,700 +6,765 @@
 <title>Blackdeer Investment Group – Full-Service Real Estate</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<!-- Tailwind CDN -->
 <script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          emerald: { 50:'#ecfdf5',100:'#d1fae5',500:'#10b981',600:'#059669',700:'#047857' },
-          sky: { 400:'#38bdf8',500:'#0ea5e9',600:'#0284c7' },
-          slate: { 50:'#f8fafc',100:'#f1f5f9',200:'#e2e8f0',300:'#cbd5e1',400:'#94a3b8',500:'#64748b',600:'#475569',700:'#334155',800:'#1e293b',900:'#0f172a' }
-        },
-        fontFamily: { sans: ['Inter','sans-serif'] }
-      }
-    }
-  }
-</script>
 <style>
+  /* ─── COLOR SCHEME ───────────────────────────────────────
+     To switch accent: change --accent and --accent-hover.
+     Orange option : #E07B2A / #C9681A
+     Green  option : #2E7D32 / #1B5E20
+     Current: Orange
+  ──────────────────────────────────────────────────────── */
+  :root {
+    --accent:       #E07B2A;
+    --accent-hover: #C9681A;
+    --black:        #0D0D0D;
+    --off-black:    #1A1A1A;
+    --dark-gray:    #2A2A2A;
+    --mid-gray:     #555555;
+    --light-gray:   #EBEBEB;
+    --off-white:    #F7F7F7;
+    --white:        #FFFFFF;
+    --border:       #E0E0E0;
+  }
+
   html { scroll-behavior: smooth; font-size: 16px; }
-  body { font-family: 'Inter', sans-serif; color: #0f172a; background: #f8fafc; overscroll-behavior: none; }
-  ::-webkit-scrollbar { width: 5px; }
+  body { font-family: 'Inter', sans-serif; color: var(--black); background: var(--white); overscroll-behavior: none; }
+
+  ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 5px; }
+  ::-webkit-scrollbar-thumb { background: var(--light-gray); border-radius: 4px; }
 
-  /* nav active */
-  .nav-link { color: #475569; font-size: 14px; text-decoration: none; transition: color .15s; }
-  .nav-link:hover { color: #0f172a; }
+  /* ── NAV ── */
+  .nav-link { color: var(--mid-gray); font-size: 13px; text-decoration: none; letter-spacing: .04em; text-transform: uppercase; transition: color .15s; }
+  .nav-link:hover { color: var(--accent); }
 
-  /* hero gradient */
-  .hero-gradient { background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f2a1f 100%); }
+  /* ── ACCENT BUTTON ── */
+  .btn-accent {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 0;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background .15s;
+  }
+  .btn-accent:hover { background: var(--accent-hover); }
 
-  /* card hover */
-  .card-hover { transition: box-shadow .2s, transform .2s; }
-  .card-hover:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.10); transform: translateY(-2px); }
+  .btn-outline {
+    display: inline-block;
+    background: transparent;
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 11px 24px;
+    border: 1px solid rgba(255,255,255,.35);
+    border-radius: 0;
+    text-decoration: none;
+    cursor: pointer;
+    transition: border-color .15s, color .15s;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 
-  /* service icon bg */
-  .icon-bg { background: #ecfdf5; color: #059669; }
+  .btn-outline-dark {
+    display: inline-block;
+    background: transparent;
+    color: var(--black);
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 11px 24px;
+    border: 1px solid var(--black);
+    border-radius: 0;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background .15s, color .15s;
+  }
+  .btn-outline-dark:hover { background: var(--black); color: var(--white); }
 
-  /* pill tags */
-  .tag { display: inline-block; font-size: 11px; letter-spacing: .04em; padding: 3px 10px; border-radius: 4px; background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; }
+  /* ── SECTION LABEL ── */
+  .label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .label::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
 
-  /* section divider */
-  .section-divider { width: 40px; height: 3px; background: linear-gradient(90deg,#059669,#0ea5e9); border-radius: 2px; margin: 12px 0 20px; }
+  /* ── CARDS ── */
+  .card { background: var(--white); border: 1px solid var(--border); transition: box-shadow .2s, transform .2s; }
+  .card:hover { box-shadow: 0 6px 24px rgba(0,0,0,.08); transform: translateY(-2px); }
 
-  /* gradient text */
-  .grad-text { background: linear-gradient(90deg,#059669,#0ea5e9); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .card-dark { background: var(--off-black); border: 1px solid #333; transition: box-shadow .2s; }
+  .card-dark:hover { box-shadow: 0 6px 24px rgba(0,0,0,.4); }
 
-  /* mobile menu */
+  /* ── TAGS ── */
+  .tag { display: inline-block; font-size: 10px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; padding: 3px 9px; background: var(--off-white); color: var(--mid-gray); border: 1px solid var(--border); }
+
+  /* ── RULE ── */
+  .accent-rule { width: 36px; height: 2px; background: var(--accent); margin: 0 0 20px; }
+
+  /* ── HERO ── */
+  .hero-bg { background: var(--black); }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(120deg, rgba(0,0,0,.7) 0%, rgba(0,0,0,.3) 100%);
+    pointer-events: none;
+  }
+
+  /* ── STAT ── */
+  .stat-num { font-size: 28px; font-weight: 700; color: var(--accent); line-height: 1; }
+
+  /* ── PLAN CHECKBOX ── */
+  .plan-check { accent-color: var(--accent); width: 15px; height: 15px; cursor: pointer; flex-shrink: 0; }
+
+  /* ── FORM ── */
+  .form-input {
+    width: 100%; padding: 11px 14px;
+    border: 1px solid var(--border);
+    font-family: 'Inter', sans-serif; font-size: 13px; color: var(--black); background: var(--white);
+    outline: none; transition: border-color .15s; border-radius: 0;
+  }
+  .form-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(224,123,42,.1); }
+  .form-input::placeholder { color: #aaa; }
+
+  /* ── MOBILE ── */
   #mobile-menu { display: none; }
   #mobile-menu.open { display: flex; }
 
-  /* plan checkbox */
-  .plan-check { accent-color: #059669; width: 16px; height: 16px; cursor: pointer; flex-shrink: 0; }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+  .fade-up   { animation: fadeUp .65s ease both; }
+  .fade-up-2 { animation: fadeUp .65s .12s ease both; }
+  .fade-up-3 { animation: fadeUp .65s .24s ease both; }
+  .fade-up-4 { animation: fadeUp .65s .36s ease both; }
 
-  /* form inputs */
-  .form-input {
-    width: 100%; padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px;
-    font-family: 'Inter',sans-serif; font-size: 14px; color: #0f172a; background: #fff;
-    outline: none; transition: border-color .15s;
+  @media(max-width:900px) {
+    .hide-m { display:none !important; }
+    .col-2 { grid-template-columns:1fr !important; }
+    .col-3 { grid-template-columns:1fr !important; }
+    .col-4 { grid-template-columns:1fr 1fr !important; }
   }
-  .form-input:focus { border-color: #059669; box-shadow: 0 0 0 3px rgba(5,150,105,.08); }
-  .form-input::placeholder { color: #94a3b8; }
-
-  /* stat card */
-  .stat-num { font-size: 30px; font-weight: 700; background: linear-gradient(90deg,#059669,#0ea5e9); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-
-  /* investor portal card */
-  .portal-card { background: linear-gradient(135deg,rgba(5,150,105,.08),rgba(14,165,233,.08)); border: 1px solid rgba(5,150,105,.2); }
-
-  @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
-  .fade-up { animation: fadeUp .6s ease both; }
-  .fade-up-2 { animation: fadeUp .6s .12s ease both; }
-  .fade-up-3 { animation: fadeUp .6s .24s ease both; }
-  .fade-up-4 { animation: fadeUp .6s .36s ease both; }
-
-  @media(max-width:768px) {
-    .hero-grid { grid-template-columns: 1fr !important; }
-    .services-grid { grid-template-columns: 1fr !important; }
-    .props-grid { grid-template-columns: 1fr 1fr !important; }
-    .partners-grid { grid-template-columns: 1fr !important; }
-    .team-grid { grid-template-columns: 1fr 1fr !important; }
-    .plan-grid { grid-template-columns: 1fr !important; }
-    .footer-grid { grid-template-columns: 1fr 1fr !important; }
-    .hide-mobile { display: none !important; }
-  }
-  @media(max-width:500px) {
-    .props-grid { grid-template-columns: 1fr !important; }
-    .team-grid { grid-template-columns: 1fr !important; }
+  @media(max-width:520px) {
+    .col-4 { grid-template-columns:1fr !important; }
+    .col-2-sm { grid-template-columns:1fr !important; }
   }
 </style>
 </head>
-<body class="bg-gray-50">
+<body>
 
-<!-- ═══════════════════════════════════════════════
-     HEADER / NAV  (matches Layout.tsx exactly)
-════════════════════════════════════════════════ -->
-<header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-200 shadow-sm">
-  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+<!-- ══════════════════════════════════════════
+     NAV
+══════════════════════════════════════════ -->
+<header id="nav" style="position:fixed;top:0;left:0;right:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);transition:all .3s;">
+  <div style="max-width:1280px;margin:0 auto;padding:0 40px;height:68px;display:flex;align-items:center;justify-content:space-between;">
 
-    <!-- Logo → replace with: images/logo.png -->
-    <a href="#" class="flex items-center gap-3 no-underline">
+    <!-- Logo + wordmark -->
+    <a href="#" style="display:flex;align-items:center;gap:14px;text-decoration:none;">
       <img src="images/logo.png"
-           alt="Blackdeer Investment Group"
-           class="h-10 w-auto"
-           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-      <!-- Fallback shown if logo.png is missing -->
-      <div class="w-10 h-10 rounded-lg items-center justify-center text-white font-bold text-sm" style="background:linear-gradient(135deg,#059669,#0ea5e9);display:none">
-        BIG
-      </div>
+           alt="Blackdeer"
+           style="height:36px;width:auto;display:block;"
+           onerror="this.style.display='none';document.getElementById('logo-fallback').style.display='flex'"/>
+      <div id="logo-fallback" style="display:none;width:36px;height:36px;background:var(--accent);align-items:center;justify-content:center;font-weight:700;font-size:13px;color:#fff;letter-spacing:.05em;">B</div>
       <div>
-        <div class="text-lg font-semibold text-slate-900">Blackdeer</div>
-        <div class="text-xs text-slate-500">Full-Service Real Estate</div>
+        <div style="font-size:15px;font-weight:700;color:var(--black);letter-spacing:.06em;text-transform:uppercase;">Blackdeer</div>
+        <div style="font-size:10px;color:var(--mid-gray);letter-spacing:.1em;text-transform:uppercase;margin-top:1px;">Investment Group</div>
       </div>
     </a>
 
     <!-- Desktop nav -->
-    <nav class="hidden md:flex items-center gap-7">
-      <a href="#services" class="nav-link">Services</a>
+    <nav style="display:flex;align-items:center;gap:32px;" class="hide-m">
+      <a href="#services"   class="nav-link">Services</a>
       <a href="#properties" class="nav-link">Properties</a>
-      <a href="#partners" class="nav-link">Partners</a>
-      <a href="#team" class="nav-link">Our Team</a>
-      <a href="#investors" class="nav-link">Investors</a>
-      <a href="#contact" class="rounded-lg px-4 py-2 text-white text-sm font-medium shadow-sm transition-opacity hover:opacity-90" style="background:linear-gradient(90deg,#059669,#0ea5e9)">Request Proposal</a>
+      <a href="#partners"   class="nav-link">Partners</a>
+      <a href="#team"       class="nav-link">Team</a>
+      <a href="#investors"  class="nav-link">Investors</a>
+      <a href="#contact"    class="btn-accent">Get a Proposal</a>
     </nav>
 
-    <!-- Mobile hamburger -->
-    <button onclick="toggleMenu()" class="md:hidden p-2 rounded-lg border border-slate-200 bg-white" aria-label="Menu">
-      <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    <!-- Hamburger -->
+    <button onclick="toggleMenu()" style="display:none;padding:8px;background:none;border:1px solid var(--border);cursor:pointer;" class="show-m" id="hamburger" aria-label="Menu">
+      <svg width="20" height="20" fill="none" stroke="var(--black)" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
     </button>
   </div>
 
-  <!-- Mobile menu -->
-  <div id="mobile-menu" class="flex-col border-t border-slate-200 bg-white px-6 pb-4 pt-3 gap-3">
-    <a href="#services" onclick="toggleMenu()" class="nav-link block py-2">Services</a>
-    <a href="#properties" onclick="toggleMenu()" class="nav-link block py-2">Properties</a>
-    <a href="#partners" onclick="toggleMenu()" class="nav-link block py-2">Partners</a>
-    <a href="#team" onclick="toggleMenu()" class="nav-link block py-2">Our Team</a>
-    <a href="#investors" onclick="toggleMenu()" class="nav-link block py-2">Investors</a>
-    <a href="#contact" onclick="toggleMenu()" class="block mt-2 rounded-lg px-4 py-2 text-white text-sm font-medium text-center" style="background:linear-gradient(90deg,#059669,#0ea5e9)">Request Proposal</a>
+  <!-- Mobile dropdown -->
+  <div id="mobile-menu" style="flex-direction:column;background:var(--white);border-top:1px solid var(--border);padding:16px 24px 20px;gap:2px;">
+    <a href="#services"   onclick="toggleMenu()" class="nav-link" style="display:block;padding:10px 0;border-bottom:1px solid var(--border);">Services</a>
+    <a href="#properties" onclick="toggleMenu()" class="nav-link" style="display:block;padding:10px 0;border-bottom:1px solid var(--border);">Properties</a>
+    <a href="#partners"   onclick="toggleMenu()" class="nav-link" style="display:block;padding:10px 0;border-bottom:1px solid var(--border);">Partners</a>
+    <a href="#team"       onclick="toggleMenu()" class="nav-link" style="display:block;padding:10px 0;border-bottom:1px solid var(--border);">Team</a>
+    <a href="#investors"  onclick="toggleMenu()" class="nav-link" style="display:block;padding:10px 0;border-bottom:1px solid var(--border);">Investors</a>
+    <a href="#contact"    onclick="toggleMenu()" class="btn-accent" style="margin-top:12px;text-align:center;">Get a Proposal</a>
   </div>
 </header>
 
-<!-- ═══════════════════════════════════════════════
-     HERO  (matches Hero.tsx)
-════════════════════════════════════════════════ -->
-<section id="hero" class="hero-gradient text-white relative overflow-hidden">
-  <!-- subtle bg texture -->
-  <div class="absolute inset-0 opacity-5" style="background-image:radial-gradient(circle at 25% 25%, #ffffff 1px, transparent 1px),radial-gradient(circle at 75% 75%, #ffffff 1px, transparent 1px);background-size:48px 48px;"></div>
+<!-- ══════════════════════════════════════════
+     HERO — white background, black text, logo prominent
+══════════════════════════════════════════ -->
+<section id="hero" style="background:var(--white);min-height:80vh;display:flex;flex-direction:column;justify-content:center;padding-top:68px;border-bottom:1px solid var(--border);">
+  <div style="max-width:1280px;margin:0 auto;padding:80px 40px 80px;width:100%;">
 
-  <div class="relative max-w-7xl mx-auto px-6 py-20">
-    <div class="hero-grid grid gap-12 items-center" style="grid-template-columns:1fr 1fr">
-
-      <!-- Left copy -->
-      <div class="fade-up">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium mb-6" style="background:rgba(5,150,105,.2);color:#6ee7b7;border:1px solid rgba(5,150,105,.3)">
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block"></span>
-          Madison, WI · Midwest Focused
-        </div>
-
-        <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">
-          Blackdeer<br/>Investment Group
-        </h1>
-        <p class="text-lg text-slate-300 max-w-lg mb-3 leading-relaxed">
-          Full-Service Real Estate Management &amp; Development Firm
-        </p>
-        <p class="text-sm text-slate-400 max-w-md mb-8 leading-relaxed">
-          Commercial &amp; Residential Property Management · Real Estate Development · Commercial Brokerage · Investment Opportunities
-        </p>
-
-        <!-- CTAs -->
-        <div class="flex flex-wrap gap-3 mb-10">
-          <a href="#contact" class="inline-flex items-center gap-2 rounded-lg px-5 py-3 font-medium text-sm shadow-lg transition-opacity hover:opacity-90" style="background:linear-gradient(90deg,#059669,#0ea5e9);color:#fff">
-            Request Property Management Proposal
-          </a>
-          <a href="#properties" class="inline-flex items-center gap-2 rounded-lg px-5 py-3 font-medium text-sm border border-white/20 bg-white/5 hover:bg-white/10 transition-colors" style="color:#fff">
-            View Our Properties
-          </a>
-        </div>
-        <p class="text-sm text-slate-400">Or <a href="#contact" class="underline text-slate-300 hover:text-white">contact our team</a> to discuss a custom plan.</p>
-      </div>
-
-      <!-- Right image grid -->
-      <!-- Replace these with your own property photos -->
-      <div class="fade-up-2 hero-grid hide-mobile grid gap-3" style="grid-template-columns:1fr 1fr;grid-template-rows:190px 190px">
-        <img src="images/hero/hero-main.jpg"    alt="Office building"  class="rounded-xl object-cover w-full h-full shadow-lg" style="grid-row:1/3"/>
-        <img src="images/hero/hero-2.jpg"       alt="Property"         class="rounded-xl object-cover w-full h-full shadow-lg"/>
-        <img src="images/hero/hero-3.jpg"       alt="Development"      class="rounded-xl object-cover w-full h-full shadow-lg"/>
-      </div>
+    <!-- Large logo mark centered above headline -->
+    <div class="fade-up" style="margin-bottom:40px;">
+      <img src="images/logo.png" alt="Blackdeer Investment Group"
+           style="height:100px;width:auto;display:block;"
+           onerror="this.style.display='none'"/>
     </div>
 
-    <!-- Stat bar -->
-    <div class="fade-up-3 mt-14 grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-white/10 pt-10">
+    <!-- Eyebrow -->
+    <div class="label fade-up">Madison, Wisconsin · Midwest Focused</div>
+
+    <!-- Headline -->
+    <h1 class="fade-up-2" style="font-size:clamp(44px,6vw,76px);font-weight:700;color:var(--black);line-height:1.05;letter-spacing:-.02em;max-width:780px;margin:0 0 24px;">
+      Full-Service<br/>Real Estate.
+    </h1>
+
+    <p class="fade-up-3" style="font-size:16px;color:var(--mid-gray);max-width:520px;line-height:1.8;margin-bottom:16px;">
+      Commercial &amp; Residential Property Management · Development · Brokerage · Investment Opportunities
+    </p>
+    <p class="fade-up-3" style="font-size:13px;color:#aaa;margin-bottom:44px;">Blackdeer Investment Group · Cottage Grove, WI</p>
+
+    <!-- CTAs -->
+    <div class="fade-up-4" style="display:flex;gap:12px;flex-wrap:wrap;">
+      <a href="#contact"   class="btn-accent">Request a Proposal</a>
+      <a href="#services"  class="btn-outline-dark">Our Services</a>
+      <a href="#investors" class="btn-outline-dark">Investor Portal</a>
+    </div>
+
+    <!-- Stats bar -->
+    <div class="fade-up-4" style="margin-top:72px;padding-top:36px;border-top:1px solid var(--border);display:grid;grid-template-columns:repeat(4,1fr);gap:32px;max-width:640px;">
       <div>
         <div class="stat-num">15+</div>
-        <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider">Years Experience</div>
+        <div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#aaa;margin-top:5px;">Years Experience</div>
       </div>
       <div>
         <div class="stat-num">$100M+</div>
-        <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider">Assets Managed</div>
+        <div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#aaa;margin-top:5px;">Assets Managed</div>
       </div>
       <div>
         <div class="stat-num">5</div>
-        <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider">Service Lines</div>
+        <div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#aaa;margin-top:5px;">Service Lines</div>
       </div>
       <div>
-        <div class="stat-num">Midwest</div>
-        <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider">Focused Region</div>
+        <div class="stat-num" style="font-size:20px;">Midwest</div>
+        <div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#aaa;margin-top:5px;">Region Focus</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     SERVICES  (matches ServicesOverview.tsx + ServiceCard.tsx + new divisions)
-════════════════════════════════════════════════ -->
-<section id="services" class="max-w-7xl mx-auto px-6 py-16">
-  <div class="text-center mb-10">
-    <div class="section-divider mx-auto"></div>
-    <h2 class="text-2xl font-bold text-slate-900 mb-2">Our Services</h2>
-    <p class="text-slate-500 max-w-2xl mx-auto text-sm leading-relaxed">
-      From third-party property management growth to tailored owner solutions — see how we strengthen asset value and operational performance across every service line.
-    </p>
-  </div>
-
-  <div class="services-grid grid gap-4" style="grid-template-columns:repeat(3,1fr)">
-
-    <!-- Commercial PM -->
-    <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200 card-hover">
-      <div class="icon-bg w-11 h-11 rounded-lg flex items-center justify-center mb-4">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-      </div>
-      <h3 class="font-semibold text-slate-900 mb-2">Commercial Property Management</h3>
-      <p class="text-sm text-slate-500 leading-relaxed mb-4">Leasing, tenant relations, financial reporting, maintenance coordination, and capital oversight for office, retail, and industrial assets.</p>
-      <div class="flex flex-wrap gap-1.5">
-        <span class="tag">Leasing</span><span class="tag">Tenant Mgmt</span><span class="tag">Financial Reporting</span><span class="tag">Capital Oversight</span>
-      </div>
-    </div>
-
-    <!-- Residential PM -->
-    <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200 card-hover">
-      <div class="icon-bg w-11 h-11 rounded-lg flex items-center justify-center mb-4">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-      </div>
-      <h3 class="font-semibold text-slate-900 mb-2">Residential Property Management</h3>
-      <p class="text-sm text-slate-500 leading-relaxed mb-4">Full-service residential operations: rent collection, resident communications, monthly reporting, and vendor management.</p>
-      <div class="flex flex-wrap gap-1.5">
-        <span class="tag">Rent Collection</span><span class="tag">Resident Relations</span><span class="tag">Reporting</span><span class="tag">Value-Add</span>
-      </div>
-    </div>
-
-    <!-- Development -->
-    <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200 card-hover">
-      <div class="icon-bg w-11 h-11 rounded-lg flex items-center justify-center mb-4">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
-      </div>
-      <h3 class="font-semibold text-slate-900 mb-2">Real Estate Development</h3>
-      <p class="text-sm text-slate-500 leading-relaxed mb-4">Site acquisition, entitlements, redevelopment planning, and construction oversight. Proven track record with projects like Station 955 and Scooters/Taco John's.</p>
-      <div class="flex flex-wrap gap-1.5">
-        <span class="tag">Station 955</span><span class="tag">Acquisitions</span><span class="tag">Entitlements</span><span class="tag">Redevelopment</span>
-      </div>
-    </div>
-
-    <!-- Brokerage -->
-    <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200 card-hover">
-      <div class="icon-bg w-11 h-11 rounded-lg flex items-center justify-center mb-4">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-      </div>
-      <h3 class="font-semibold text-slate-900 mb-2">Commercial Brokerage</h3>
-      <p class="text-sm text-slate-500 leading-relaxed mb-4">Acquisitions, dispositions, leasing, and advisory services. Notable transactions include the Amazon Distribution Center land sale.</p>
-      <div class="flex flex-wrap gap-1.5">
-        <span class="tag">Acquisitions</span><span class="tag">Dispositions</span><span class="tag">Leasing</span><span class="tag">Amazon Land Sale</span>
-      </div>
-    </div>
-
-    <!-- Custom Solutions -->
-    <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200 card-hover">
-      <div class="icon-bg w-11 h-11 rounded-lg flex items-center justify-center mb-4">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
-      </div>
-      <h3 class="font-semibold text-slate-900 mb-2">Custom Management Solutions</h3>
-      <p class="text-sm text-slate-500 leading-relaxed mb-4">Flexible, unbundled services. Build a management plan tailored to your property — accounting only, leasing only, maintenance, or any combination.</p>
-      <div class="flex flex-wrap gap-1.5">
-        <span class="tag">Accounting Only</span><span class="tag">Leasing Only</span><span class="tag">Maintenance</span><span class="tag">Bank Receivership</span>
-      </div>
-    </div>
-
-    <!-- Investment -->
-    <div class="rounded-xl p-6 shadow-sm card-hover text-white" style="background:linear-gradient(135deg,#059669,#0ea5e9)">
-      <div class="w-11 h-11 rounded-lg flex items-center justify-center mb-4 bg-white/20">
-        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
-      </div>
-      <h3 class="font-semibold text-white mb-2">Investment Opportunities</h3>
-      <p class="text-sm text-white/80 leading-relaxed mb-4">Access curated Midwest real estate investment opportunities — from stabilized income assets to value-add and development plays.</p>
-      <a href="#investors" class="inline-flex items-center gap-1 text-sm font-medium text-white underline hover:no-underline">View Investor Portal →</a>
-    </div>
-
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════
-     FEATURED PROPERTIES  (matches FeaturedProperties.tsx)
-════════════════════════════════════════════════ -->
-<section id="properties" class="bg-white border-t border-b border-slate-100 py-16">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="flex items-center justify-between mb-10">
-      <div>
-        <div class="section-divider"></div>
-        <h2 class="text-2xl font-bold text-slate-900">Featured Properties &amp; Transactions</h2>
-        <p class="text-slate-500 mt-1 text-sm">Selected managed properties, recent deals, and redevelopment highlights.</p>
-      </div>
-      <a href="#" class="hidden md:inline-flex items-center gap-1 text-sm font-medium text-emerald-600 hover:text-emerald-700">View all <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></a>
-    </div>
-
-    <div class="props-grid grid gap-5" style="grid-template-columns:repeat(4,1fr)">
-
-      <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200 card-hover">
-        <!-- images/properties/honey-creek.jpg -->
-        <img src="images/properties/honey-creek.jpg" alt="Honey Creek Corporate Center" class="w-full object-cover" style="height:160px"/>
-        <div class="p-4">
-          <span class="tag mb-2 inline-block">Commercial · Managed</span>
-          <h3 class="font-semibold text-slate-900 text-sm leading-snug">Honey Creek Corporate Center</h3>
-          <p class="text-xs text-slate-400 mt-1">Madison, WI</p>
-        </div>
-      </div>
-
-      <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200 card-hover">
-        <!-- images/properties/cottage-grove-retail.jpg -->
-        <img src="images/properties/cottage-grove-retail.jpg" alt="Cottage Grove Retail Center" class="w-full object-cover" style="height:160px"/>
-        <div class="p-4">
-          <span class="tag mb-2 inline-block">Retail · Managed</span>
-          <h3 class="font-semibold text-slate-900 text-sm leading-snug">Cottage Grove Retail Center</h3>
-          <p class="text-xs text-slate-400 mt-1">Cottage Grove, WI</p>
-        </div>
-      </div>
-
-      <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200 card-hover">
-        <!-- images/properties/cic-ii.jpg -->
-        <img src="images/properties/cic-ii.jpg" alt="Center for Industry and Commerce II" class="w-full object-cover" style="height:160px"/>
-        <div class="p-4">
-          <span class="tag mb-2 inline-block">Industrial · Managed</span>
-          <h3 class="font-semibold text-slate-900 text-sm leading-snug">Center for Industry &amp; Commerce II</h3>
-          <p class="text-xs text-slate-400 mt-1">Midwest</p>
-        </div>
-      </div>
-
-      <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200 card-hover">
-        <!-- images/properties/station-955.jpg -->
-        <img src="images/properties/station-955.jpg" alt="Station 955" class="w-full object-cover" style="height:160px"/>
-        <div class="p-4">
-          <span class="tag mb-2 inline-block">Development · Completed</span>
-          <h3 class="font-semibold text-slate-900 text-sm leading-snug">Station 955 – Luxury Apartments</h3>
-          <p class="text-xs text-slate-400 mt-1">Wisconsin</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════
-     STRATEGIC PARTNERS  (matches Partners.tsx)
-════════════════════════════════════════════════ -->
-<section id="partners" class="max-w-7xl mx-auto px-6 py-16">
-  <div class="text-center mb-10">
-    <div class="section-divider mx-auto"></div>
-    <h2 class="text-2xl font-bold text-slate-900 mb-2">Our Strategic Partners</h2>
-    <p class="text-slate-500 max-w-xl mx-auto text-sm">Specialized partners expand our service coverage while keeping each relationship clear and transparent.</p>
-  </div>
-
-  <div class="partners-grid grid gap-6 max-w-4xl mx-auto" style="grid-template-columns:1fr 1fr">
-
-    <!-- Y Realty -->
-    <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200 card-hover flex gap-5 items-start">
-      <div class="w-14 h-14 rounded-lg flex items-center justify-center text-white font-bold text-lg flex-shrink-0" style="background:linear-gradient(135deg,#059669,#0ea5e9)">Y</div>
-      <div>
-        <h3 class="font-semibold text-slate-900">Y Realty</h3>
-        <div class="text-xs font-medium text-emerald-600 uppercase tracking-wider mb-2">Residential Sales Partner</div>
-        <p class="text-sm text-slate-500 leading-relaxed">Specializes in home buying, selling, and residential advisory services. Y Realty operates as a residential sales partner and referral network — separate from Blackdeer's property management division.</p>
-        <div class="flex flex-wrap gap-1.5 mt-3">
-          <span class="tag">Home Buying</span><span class="tag">Home Selling</span><span class="tag">Residential Advisory</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Park Vista -->
-    <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-200 card-hover flex gap-5 items-start">
-      <div class="w-14 h-14 rounded-lg flex items-center justify-center text-white font-bold text-sm flex-shrink-0 text-center leading-tight" style="background:linear-gradient(135deg,#059669,#0ea5e9)">PV</div>
-      <div>
-        <h3 class="font-semibold text-slate-900">Park Vista Senior Housing</h3>
-        <div class="text-xs font-medium text-emerald-600 uppercase tracking-wider mb-2">Senior Housing Operations Partner</div>
-        <p class="text-sm text-slate-500 leading-relaxed">A specialized senior housing management partner associated with Blackdeer. Focused exclusively on senior living operations, assisted living, memory care, and related property management.</p>
-        <div class="flex flex-wrap gap-1.5 mt-3">
-          <span class="tag">Senior Living</span><span class="tag">Assisted Living</span><span class="tag">Memory Care</span><span class="tag">Operations</span>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════
-     TEAM  (matches TeamGrid.tsx)
-════════════════════════════════════════════════ -->
-<section id="team" class="bg-white border-t border-slate-100 py-16">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="text-center mb-10">
-      <div class="section-divider mx-auto"></div>
-      <h2 class="text-2xl font-bold text-slate-900 mb-2">Our Team</h2>
-      <p class="text-slate-500 text-sm max-w-lg mx-auto">Experienced professionals across management, development, brokerage, and operations.</p>
-    </div>
-
-    <div class="team-grid grid gap-5" style="grid-template-columns:repeat(3,1fr)">
-
-      <div class="bg-white rounded-xl border border-slate-200 shadow-sm card-hover overflow-hidden">
-        <!-- images/team/ceo.jpg -->
-        <div class="overflow-hidden bg-slate-100" style="height:200px">
-          <img src="images/team/ceo.jpg" alt="CEO" class="w-full h-full object-cover object-top"
-               onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-4xl text-slate-300\'>👤</div>'"/>
-        </div>
-        <div class="p-5 text-center">
-          <div class="font-semibold text-slate-900">Your Name Here</div>
-          <div class="text-xs text-emerald-600 uppercase tracking-wider font-medium mt-0.5 mb-3">Chief Executive Officer</div>
-          <div class="text-sm text-slate-500">(608) 555-0000</div>
-          <a href="mailto:info@blackdeerig.com" class="text-sm text-emerald-600 hover:underline">info@blackdeerig.com</a>
-          <div class="mt-3 pt-3 border-t border-slate-100 text-xs text-slate-400">Leadership · Investment Strategy · Development</div>
-        </div>
-      </div>
-
-      <div class="bg-white rounded-xl border border-slate-200 shadow-sm card-hover overflow-hidden">
-        <!-- images/team/property-manager.jpg -->
-        <div class="overflow-hidden bg-slate-100" style="height:200px">
-          <img src="images/team/property-manager.jpg" alt="Property Manager" class="w-full h-full object-cover object-top"
-               onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-4xl text-slate-300\'>👤</div>'"/>
-        </div>
-        <div class="p-5 text-center">
-          <div class="font-semibold text-slate-900">Team Member</div>
-          <div class="text-xs text-emerald-600 uppercase tracking-wider font-medium mt-0.5 mb-3">Director of Property Management</div>
-          <div class="text-sm text-slate-500">(608) 555-0001</div>
-          <a href="mailto:pm@blackdeerig.com" class="text-sm text-emerald-600 hover:underline">pm@blackdeerig.com</a>
-          <div class="mt-3 pt-3 border-t border-slate-100 text-xs text-slate-400">Commercial PM · Residential PM · Owner Relations</div>
-        </div>
-      </div>
-
-      <div class="bg-white rounded-xl border border-slate-200 shadow-sm card-hover overflow-hidden">
-        <!-- images/team/broker.jpg -->
-        <div class="overflow-hidden bg-slate-100" style="height:200px">
-          <img src="images/team/broker.jpg" alt="Broker" class="w-full h-full object-cover object-top"
-               onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-4xl text-slate-300\'>👤</div>'"/>
-        </div>
-        <div class="p-5 text-center">
-          <div class="font-semibold text-slate-900">Team Member</div>
-          <div class="text-xs text-emerald-600 uppercase tracking-wider font-medium mt-0.5 mb-3">Commercial Brokerage</div>
-          <div class="text-sm text-slate-500">(608) 555-0002</div>
-          <a href="mailto:brokerage@blackdeerig.com" class="text-sm text-emerald-600 hover:underline">brokerage@blackdeerig.com</a>
-          <div class="mt-3 pt-3 border-t border-slate-100 text-xs text-slate-400">Acquisitions · Dispositions · Leasing</div>
-        </div>
-      </div>
-
-    </div>
-    <p class="text-center text-xs text-slate-400 mt-6">Add real headshots, names, direct numbers and emails for each team member.</p>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════
-     BUILD YOUR PLAN — CTA  (matches CTASection.tsx + expanded)
-════════════════════════════════════════════════ -->
-<section id="contact" class="max-w-7xl mx-auto px-6 py-16">
-  <div class="section-divider"></div>
-  <h2 class="text-2xl font-bold text-slate-900 mb-2">Build Your Management Plan</h2>
-  <p class="text-slate-500 text-sm mb-10 max-w-xl">Every property is different. Select the services you need and request a custom proposal — no full-service package required.</p>
-
-  <div class="plan-grid grid gap-10 items-start" style="grid-template-columns:1fr 1fr">
-
-    <!-- Left: service checkboxes -->
+<!-- ══════════════════════════════════════════
+     ABOUT STRIP
+══════════════════════════════════════════ -->
+<section style="background:var(--off-white);border-top:1px solid var(--border);padding:80px 0;">
+  <div style="max-width:1280px;margin:0 auto;padding:0 40px;display:grid;gap:60px;align-items:center;grid-template-columns:1fr 2fr;" class="col-2">
     <div>
-      <h3 class="font-semibold text-slate-800 mb-4 text-sm uppercase tracking-wider">Select Your Services</h3>
-      <div class="grid grid-cols-2 gap-3">
-        <label class="flex items-center gap-3 bg-white rounded-lg p-3 border border-slate-200 cursor-pointer hover:border-emerald-400 transition-colors">
-          <input type="checkbox" class="plan-check"/> <span class="text-sm text-slate-700">Accounting &amp; Reporting</span>
-        </label>
-        <label class="flex items-center gap-3 bg-white rounded-lg p-3 border border-slate-200 cursor-pointer hover:border-emerald-400 transition-colors">
-          <input type="checkbox" class="plan-check"/> <span class="text-sm text-slate-700">Leasing Only</span>
-        </label>
-        <label class="flex items-center gap-3 bg-white rounded-lg p-3 border border-slate-200 cursor-pointer hover:border-emerald-400 transition-colors">
-          <input type="checkbox" class="plan-check"/> <span class="text-sm text-slate-700">Maintenance Coordination</span>
-        </label>
-        <label class="flex items-center gap-3 bg-white rounded-lg p-3 border border-slate-200 cursor-pointer hover:border-emerald-400 transition-colors">
-          <input type="checkbox" class="plan-check"/> <span class="text-sm text-slate-700">Vendor Management</span>
-        </label>
-        <label class="flex items-center gap-3 bg-white rounded-lg p-3 border border-slate-200 cursor-pointer hover:border-emerald-400 transition-colors">
-          <input type="checkbox" class="plan-check"/> <span class="text-sm text-slate-700">Capital Project Oversight</span>
-        </label>
-        <label class="flex items-center gap-3 bg-white rounded-lg p-3 border border-slate-200 cursor-pointer hover:border-emerald-400 transition-colors">
-          <input type="checkbox" class="plan-check"/> <span class="text-sm text-slate-700">Financial Reporting</span>
-        </label>
-        <label class="flex items-center gap-3 bg-white rounded-lg p-3 border border-slate-200 cursor-pointer hover:border-emerald-400 transition-colors">
-          <input type="checkbox" class="plan-check"/> <span class="text-sm text-slate-700">Rent Collection</span>
-        </label>
-        <label class="flex items-center gap-3 bg-white rounded-lg p-3 border border-slate-200 cursor-pointer hover:border-emerald-400 transition-colors">
-          <input type="checkbox" class="plan-check"/> <span class="text-sm text-slate-700">Full-Service Management</span>
-        </label>
-        <label class="flex items-center gap-3 bg-white rounded-lg p-3 border border-slate-200 cursor-pointer hover:border-emerald-400 transition-colors">
-          <input type="checkbox" class="plan-check"/> <span class="text-sm text-slate-700">Bank Receivership</span>
-        </label>
-        <label class="flex items-center gap-3 bg-white rounded-lg p-3 border border-slate-200 cursor-pointer hover:border-emerald-400 transition-colors">
-          <input type="checkbox" class="plan-check"/> <span class="text-sm text-slate-700">Budgeting Support</span>
-        </label>
-      </div>
-      <p class="text-xs text-slate-400 mt-4">Select one or more services, then fill out the form. We respond within one business day.</p>
+      <div class="label">About BIG</div>
+      <h2 style="font-size:clamp(28px,3.5vw,42px);font-weight:700;color:var(--black);line-height:1.15;letter-spacing:-.02em;">More than investors.<br/>We are operators.</h2>
     </div>
-
-    <!-- Right: contact form -->
-    <div class="rounded-2xl p-8 shadow-lg" style="background:linear-gradient(135deg,#0f172a,#1a3a5f)">
-      <h3 class="text-xl font-semibold text-white mb-1">Request a Proposal</h3>
-      <p class="text-sm text-slate-400 mb-6">Tell us about your property and goals.</p>
-
-      <div class="space-y-4">
-        <div>
-          <label class="block text-xs text-slate-400 uppercase tracking-wider mb-1.5">Your Name</label>
-          <input type="text" placeholder="Jane Smith" class="form-input"/>
-        </div>
-        <div>
-          <label class="block text-xs text-slate-400 uppercase tracking-wider mb-1.5">Email Address</label>
-          <input type="email" placeholder="jane@company.com" class="form-input"/>
-        </div>
-        <div>
-          <label class="block text-xs text-slate-400 uppercase tracking-wider mb-1.5">Phone Number</label>
-          <input type="tel" placeholder="(608) 000-0000" class="form-input"/>
-        </div>
-        <div>
-          <label class="block text-xs text-slate-400 uppercase tracking-wider mb-1.5">Property Type</label>
-          <select class="form-input">
-            <option value="">Select type…</option>
-            <option>Commercial Office</option>
-            <option>Retail</option>
-            <option>Industrial</option>
-            <option>Multifamily / Residential</option>
-            <option>Senior Housing</option>
-            <option>Mixed Use</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div>
-          <label class="block text-xs text-slate-400 uppercase tracking-wider mb-1.5">Tell Us About Your Property</label>
-          <textarea rows="3" placeholder="Location, size, current situation, goals…" class="form-input" style="resize:vertical"></textarea>
-        </div>
-        <button onclick="handleSubmit()" class="w-full py-3 rounded-lg text-white font-medium text-sm transition-opacity hover:opacity-90" style="background:linear-gradient(90deg,#059669,#0ea5e9)">
-          Send Request →
-        </button>
-      </div>
+    <div>
+      <div class="accent-rule"></div>
+      <p style="font-size:15px;color:var(--mid-gray);line-height:1.85;margin-bottom:16px;">Blackdeer Investment Group is a Midwest-focused, full-service real estate company headquartered in Cottage Grove, Wisconsin. We bring commercial property management, residential management, development, brokerage, and investment expertise under one experienced team.</p>
+      <p style="font-size:15px;color:var(--mid-gray);line-height:1.85;">Our third-party property management division is growing rapidly — because owners trust us to manage their assets with an owner's mindset: protecting value, maximizing income, and communicating clearly every step of the way.</p>
     </div>
-
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     INVESTOR PORTAL  (new section)
-════════════════════════════════════════════════ -->
-<section id="investors" class="bg-white border-t border-slate-100 py-16">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="grid gap-12 items-center" style="grid-template-columns:1fr 1fr">
+<!-- ══════════════════════════════════════════
+     SERVICES
+══════════════════════════════════════════ -->
+<section id="services" style="background:var(--white);padding:80px 0;border-top:1px solid var(--border);">
+  <div style="max-width:1280px;margin:0 auto;padding:0 40px;">
+    <div style="margin-bottom:48px;">
+      <div class="label">What We Do</div>
+      <h2 style="font-size:clamp(28px,3.5vw,40px);font-weight:700;color:var(--black);letter-spacing:-.02em;">Our Service Divisions</h2>
+      <p style="font-size:14px;color:var(--mid-gray);margin-top:10px;max-width:520px;line-height:1.7;">From third-party management growth to brokerage and development — every service line, under one roof.</p>
+    </div>
 
-      <div>
-        <div class="section-divider"></div>
-        <h2 class="text-2xl font-bold text-slate-900 mb-3">Investment Opportunities</h2>
-        <p class="text-slate-500 text-sm leading-relaxed mb-8">Blackdeer offers accredited investors access to curated Midwest real estate opportunities — from stabilized income assets to value-add and development plays. We invest alongside our partners.</p>
+    <div class="col-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);">
 
-        <div class="space-y-5">
-          <div class="flex gap-4">
-            <div class="w-9 h-9 rounded-lg icon-bg flex items-center justify-center flex-shrink-0">
-              <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            </div>
-            <div>
-              <div class="font-medium text-slate-900 text-sm">Stabilized Income Assets</div>
-              <div class="text-xs text-slate-400 mt-0.5">Commercial and residential assets with strong in-place cash flow.</div>
-            </div>
-          </div>
-          <div class="flex gap-4">
-            <div class="w-9 h-9 rounded-lg icon-bg flex items-center justify-center flex-shrink-0">
-              <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
-            </div>
-            <div>
-              <div class="font-medium text-slate-900 text-sm">Value-Add Opportunities</div>
-              <div class="text-xs text-slate-400 mt-0.5">Repositioning plays where our operational expertise drives returns.</div>
-            </div>
-          </div>
-          <div class="flex gap-4">
-            <div class="w-9 h-9 rounded-lg icon-bg flex items-center justify-center flex-shrink-0">
-              <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5"/></svg>
-            </div>
-            <div>
-              <div class="font-medium text-slate-900 text-sm">Development Projects</div>
-              <div class="text-xs text-slate-400 mt-0.5">Ground-up and redevelopment projects with significant upside.</div>
-            </div>
-          </div>
-          <div class="flex gap-4">
-            <div class="w-9 h-9 rounded-lg icon-bg flex items-center justify-center flex-shrink-0">
-              <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-            </div>
-            <div>
-              <div class="font-medium text-slate-900 text-sm">Secure Investor Portal</div>
-              <div class="text-xs text-slate-400 mt-0.5">Login anytime to review your holdings, reports, and new opportunities.</div>
-            </div>
-          </div>
-        </div>
+      <!-- Commercial PM -->
+      <div class="card" style="padding:32px 28px;background:var(--white);">
+        <div style="font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;">01</div>
+        <h3 style="font-size:17px;font-weight:600;color:var(--black);margin-bottom:10px;">Commercial Property Management</h3>
+        <p style="font-size:13px;color:var(--mid-gray);line-height:1.75;margin-bottom:16px;">Leasing, tenant relations, financial reporting, maintenance coordination, and capital oversight for office, retail, and industrial assets.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:5px;"><span class="tag">Leasing</span><span class="tag">Financial Reporting</span><span class="tag">Capital Oversight</span><span class="tag">Tenant Mgmt</span></div>
       </div>
 
-      <div class="portal-card rounded-2xl p-8 text-center">
-        <div class="w-16 h-16 rounded-full icon-bg flex items-center justify-center mx-auto mb-5">
-          <svg class="w-7 h-7 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-        </div>
-        <h3 class="text-xl font-semibold text-slate-900 mb-2">Investor Portal</h3>
-        <p class="text-sm text-slate-500 leading-relaxed mb-6">Access your investment account, review current opportunities, and track portfolio performance — all in one secure place.</p>
-        <a href="#" class="inline-flex items-center gap-2 rounded-lg px-6 py-3 text-white font-medium text-sm mb-4 transition-opacity hover:opacity-90" style="background:linear-gradient(90deg,#059669,#0ea5e9)">
-          Log In to Portal →
-        </a>
-        <br/>
-        <a href="mailto:info@blackdeerig.com" class="text-sm text-emerald-600 hover:underline">Contact Investment Team</a>
+      <!-- Residential PM -->
+      <div class="card" style="padding:32px 28px;background:var(--white);">
+        <div style="font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;">02</div>
+        <h3 style="font-size:17px;font-weight:600;color:var(--black);margin-bottom:10px;">Residential Property Management</h3>
+        <p style="font-size:13px;color:var(--mid-gray);line-height:1.75;margin-bottom:16px;">Full-service residential operations: rent collection, resident communications, monthly reporting, and vendor management.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:5px;"><span class="tag">Rent Collection</span><span class="tag">Resident Relations</span><span class="tag">Reporting</span><span class="tag">Value-Add</span></div>
+      </div>
+
+      <!-- Development -->
+      <div class="card" style="padding:32px 28px;background:var(--white);">
+        <div style="font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;">03</div>
+        <h3 style="font-size:17px;font-weight:600;color:var(--black);margin-bottom:10px;">Real Estate Development</h3>
+        <p style="font-size:13px;color:var(--mid-gray);line-height:1.75;margin-bottom:16px;">Site acquisition, entitlements, redevelopment planning, and construction oversight. Track record includes Station 955 and Scooters/Taco John's.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:5px;"><span class="tag">Station 955</span><span class="tag">Acquisitions</span><span class="tag">Entitlements</span></div>
+      </div>
+
+      <!-- Brokerage -->
+      <div class="card" style="padding:32px 28px;background:var(--white);">
+        <div style="font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;">04</div>
+        <h3 style="font-size:17px;font-weight:600;color:var(--black);margin-bottom:10px;">Commercial Brokerage</h3>
+        <p style="font-size:13px;color:var(--mid-gray);line-height:1.75;margin-bottom:16px;">Acquisitions, dispositions, leasing, and advisory services. Notable transactions include the Amazon Distribution Center land sale.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:5px;"><span class="tag">Acquisitions</span><span class="tag">Dispositions</span><span class="tag">Amazon Land Sale</span></div>
+      </div>
+
+      <!-- Custom -->
+      <div class="card" style="padding:32px 28px;background:var(--white);">
+        <div style="font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;">05</div>
+        <h3 style="font-size:17px;font-weight:600;color:var(--black);margin-bottom:10px;">Custom Management Solutions</h3>
+        <p style="font-size:13px;color:var(--mid-gray);line-height:1.75;margin-bottom:16px;">Flexible, unbundled services. Accounting only, leasing only, maintenance, or any combination. Build the plan that fits your property.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:5px;"><span class="tag">Accounting</span><span class="tag">Leasing Only</span><span class="tag">Maintenance</span><span class="tag">Bank Receivership</span></div>
+      </div>
+
+      <!-- Investment — accent card -->
+      <div style="padding:32px 28px;background:var(--black);border:none;">
+        <div style="font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;">06</div>
+        <h3 style="font-size:17px;font-weight:600;color:#fff;margin-bottom:10px;">Investment Opportunities</h3>
+        <p style="font-size:13px;color:#999;line-height:1.75;margin-bottom:24px;">Access curated Midwest real estate investment opportunities — stabilized income, value-add, and development plays.</p>
+        <a href="#investors" style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);text-decoration:none;font-weight:600;">View Investor Portal →</a>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     FOOTER  (matches Layout.tsx footer)
-════════════════════════════════════════════════ -->
-<footer class="bg-white border-t border-slate-200 mt-0">
-  <div class="max-w-7xl mx-auto px-6 py-10">
-    <div class="footer-grid grid gap-8 mb-8" style="grid-template-columns:2fr 1fr 1fr 1fr">
-
+<!-- ══════════════════════════════════════════
+     FEATURED PROPERTIES
+══════════════════════════════════════════ -->
+<section id="properties" style="background:var(--off-white);padding:80px 0;border-top:1px solid var(--border);">
+  <div style="max-width:1280px;margin:0 auto;padding:0 40px;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px;flex-wrap:wrap;gap:16px;">
       <div>
-        <div class="flex items-center gap-3 mb-3">
-          <!-- Footer logo → images/logo.png -->
-          <img src="images/logo.png" alt="Blackdeer Investment Group" class="h-8 w-auto"
-               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-          <div class="w-9 h-9 rounded-lg items-center justify-center text-white font-bold text-xs" style="background:linear-gradient(135deg,#059669,#0ea5e9);display:none">BIG</div>
-          <span class="font-semibold text-slate-900">Blackdeer</span>
+        <div class="label">Portfolio</div>
+        <h2 style="font-size:clamp(26px,3vw,38px);font-weight:700;color:var(--black);letter-spacing:-.02em;">Featured Properties &amp; Transactions</h2>
+      </div>
+      <a href="#" style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);text-decoration:none;font-weight:600;">View All →</a>
+    </div>
+
+    <div class="col-4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+
+      <div class="card" style="overflow:hidden;">
+        <!-- images/properties/honey-creek.jpg -->
+        <div style="height:180px;background:var(--light-gray);overflow:hidden;">
+          <img src="images/properties/honey-creek.jpg" alt="Honey Creek Corporate Center"
+               style="width:100%;height:100%;object-fit:cover;display:block;"
+               onerror="this.parentElement.style.background='#ddd'"/>
         </div>
-        <p class="text-sm text-slate-500 leading-relaxed max-w-xs">Commercial &amp; Residential Property Management · Real Estate Development · Commercial Brokerage · Investment Opportunities</p>
-        <div class="mt-4 text-sm text-slate-400">
-          1609 Landmark Drive, Cottage Grove, WI 53527<br/>
-          <a href="mailto:info@blackdeerig.com" class="text-emerald-600 hover:underline">info@blackdeerig.com</a>
+        <div style="padding:18px 16px;">
+          <div class="tag" style="margin-bottom:8px;">Commercial · Managed</div>
+          <div style="font-size:14px;font-weight:600;color:var(--black);line-height:1.3;margin-top:6px;">Honey Creek Corporate Center</div>
+          <div style="font-size:11px;color:var(--mid-gray);margin-top:4px;">Madison, WI</div>
+        </div>
+      </div>
+
+      <div class="card" style="overflow:hidden;">
+        <!-- images/properties/cottage-grove-retail.jpg -->
+        <div style="height:180px;background:var(--light-gray);overflow:hidden;">
+          <img src="images/properties/cottage-grove-retail.jpg" alt="Cottage Grove Retail Center"
+               style="width:100%;height:100%;object-fit:cover;display:block;"
+               onerror="this.parentElement.style.background='#ddd'"/>
+        </div>
+        <div style="padding:18px 16px;">
+          <div class="tag" style="margin-bottom:8px;">Retail · Managed</div>
+          <div style="font-size:14px;font-weight:600;color:var(--black);line-height:1.3;margin-top:6px;">Cottage Grove Retail Center</div>
+          <div style="font-size:11px;color:var(--mid-gray);margin-top:4px;">Cottage Grove, WI</div>
+        </div>
+      </div>
+
+      <div class="card" style="overflow:hidden;">
+        <!-- images/properties/cic-ii.jpg -->
+        <div style="height:180px;background:var(--light-gray);overflow:hidden;">
+          <img src="images/properties/cic-ii.jpg" alt="Center for Industry and Commerce II"
+               style="width:100%;height:100%;object-fit:cover;display:block;"
+               onerror="this.parentElement.style.background='#ddd'"/>
+        </div>
+        <div style="padding:18px 16px;">
+          <div class="tag" style="margin-bottom:8px;">Industrial · Managed</div>
+          <div style="font-size:14px;font-weight:600;color:var(--black);line-height:1.3;margin-top:6px;">Center for Industry &amp; Commerce II</div>
+          <div style="font-size:11px;color:var(--mid-gray);margin-top:4px;">Midwest</div>
+        </div>
+      </div>
+
+      <div class="card" style="overflow:hidden;">
+        <!-- images/properties/station-955.jpg -->
+        <div style="height:180px;background:var(--light-gray);overflow:hidden;">
+          <img src="images/properties/station-955.jpg" alt="Station 955"
+               style="width:100%;height:100%;object-fit:cover;display:block;"
+               onerror="this.parentElement.style.background='#ddd'"/>
+        </div>
+        <div style="padding:18px 16px;">
+          <div class="tag" style="margin-bottom:8px;">Development · Completed</div>
+          <div style="font-size:14px;font-weight:600;color:var(--black);line-height:1.3;margin-top:6px;">Station 955 – Luxury Apartments</div>
+          <div style="font-size:11px;color:var(--mid-gray);margin-top:4px;">Wisconsin</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     STRATEGIC PARTNERS
+══════════════════════════════════════════ -->
+<section id="partners" style="background:var(--white);padding:80px 0;border-top:1px solid var(--border);">
+  <div style="max-width:1280px;margin:0 auto;padding:0 40px;">
+    <div style="margin-bottom:48px;">
+      <div class="label">Network</div>
+      <h2 style="font-size:clamp(26px,3vw,38px);font-weight:700;color:var(--black);letter-spacing:-.02em;">Our Strategic Partners</h2>
+      <p style="font-size:14px;color:var(--mid-gray);margin-top:10px;max-width:480px;line-height:1.7;">Specialized partners expand our service coverage while keeping each relationship clear and transparent.</p>
+    </div>
+
+    <div class="col-2" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:900px;">
+
+      <div class="card" style="padding:32px 28px;display:flex;gap:20px;align-items:flex-start;">
+        <div style="width:48px;height:48px;background:var(--black);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:var(--white);letter-spacing:.04em;">Y</div>
+        <div>
+          <h3 style="font-size:16px;font-weight:600;color:var(--black);">Y Realty</h3>
+          <div style="font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:4px 0 10px;">Residential Sales Partner</div>
+          <p style="font-size:13px;color:var(--mid-gray);line-height:1.75;margin-bottom:12px;">Home buying, selling, and residential advisory. Y Realty operates as a residential sales and referral partner — separate from Blackdeer's property management division.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:5px;"><span class="tag">Home Buying</span><span class="tag">Home Selling</span><span class="tag">Residential Advisory</span></div>
+        </div>
+      </div>
+
+      <div class="card" style="padding:32px 28px;display:flex;gap:20px;align-items:flex-start;">
+        <div style="width:48px;height:48px;background:var(--black);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--white);letter-spacing:.03em;text-align:center;line-height:1.2;">PV</div>
+        <div>
+          <h3 style="font-size:16px;font-weight:600;color:var(--black);">Park Vista Senior Housing</h3>
+          <div style="font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:4px 0 10px;">Senior Housing Operations Partner</div>
+          <p style="font-size:13px;color:var(--mid-gray);line-height:1.75;margin-bottom:12px;">Focused exclusively on senior living operations, assisted living, memory care, and senior housing property management — a specialized partner associated with Blackdeer.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:5px;"><span class="tag">Senior Living</span><span class="tag">Assisted Living</span><span class="tag">Memory Care</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     TEAM
+══════════════════════════════════════════ -->
+<section id="team" style="background:var(--off-white);padding:80px 0;border-top:1px solid var(--border);">
+  <div style="max-width:1280px;margin:0 auto;padding:0 40px;">
+    <div style="margin-bottom:48px;">
+      <div class="label">The People</div>
+      <h2 style="font-size:clamp(26px,3vw,38px);font-weight:700;color:var(--black);letter-spacing:-.02em;">Our Team</h2>
+      <p style="font-size:14px;color:var(--mid-gray);margin-top:10px;max-width:480px;line-height:1.7;">Experienced professionals across management, development, brokerage, and operations.</p>
+    </div>
+
+    <div class="col-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+
+      <div class="card" style="overflow:hidden;">
+        <!-- images/team/ceo.jpg -->
+        <div style="height:220px;background:var(--light-gray);overflow:hidden;">
+          <img src="images/team/ceo.jpg" alt="CEO"
+               style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;"
+               onerror="this.parentElement.innerHTML='<div style=\'height:100%;display:flex;align-items:center;justify-content:center;font-size:48px;color:#ccc;\'>👤</div>'"/>
+        </div>
+        <div style="padding:20px;border-top:2px solid var(--accent);">
+          <div style="font-size:16px;font-weight:600;color:var(--black);">Your Name Here</div>
+          <div style="font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:5px 0 12px;">Chief Executive Officer</div>
+          <div style="font-size:12px;color:var(--mid-gray);">(608) 555-0000</div>
+          <a href="mailto:info@blackdeerig.com" style="font-size:12px;color:var(--accent);text-decoration:none;">info@blackdeerig.com</a>
+          <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);font-size:11px;color:#aaa;">Leadership · Investment · Development</div>
+        </div>
+      </div>
+
+      <div class="card" style="overflow:hidden;">
+        <!-- images/team/property-manager.jpg -->
+        <div style="height:220px;background:var(--light-gray);overflow:hidden;">
+          <img src="images/team/property-manager.jpg" alt="Property Manager"
+               style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;"
+               onerror="this.parentElement.innerHTML='<div style=\'height:100%;display:flex;align-items:center;justify-content:center;font-size:48px;color:#ccc;\'>👤</div>'"/>
+        </div>
+        <div style="padding:20px;border-top:2px solid var(--accent);">
+          <div style="font-size:16px;font-weight:600;color:var(--black);">Team Member</div>
+          <div style="font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:5px 0 12px;">Director of Property Management</div>
+          <div style="font-size:12px;color:var(--mid-gray);">(608) 555-0001</div>
+          <a href="mailto:pm@blackdeerig.com" style="font-size:12px;color:var(--accent);text-decoration:none;">pm@blackdeerig.com</a>
+          <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);font-size:11px;color:#aaa;">Commercial PM · Residential PM · Owner Relations</div>
+        </div>
+      </div>
+
+      <div class="card" style="overflow:hidden;">
+        <!-- images/team/broker.jpg -->
+        <div style="height:220px;background:var(--light-gray);overflow:hidden;">
+          <img src="images/team/broker.jpg" alt="Broker"
+               style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;"
+               onerror="this.parentElement.innerHTML='<div style=\'height:100%;display:flex;align-items:center;justify-content:center;font-size:48px;color:#ccc;\'>👤</div>'"/>
+        </div>
+        <div style="padding:20px;border-top:2px solid var(--accent);">
+          <div style="font-size:16px;font-weight:600;color:var(--black);">Team Member</div>
+          <div style="font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:5px 0 12px;">Commercial Brokerage</div>
+          <div style="font-size:12px;color:var(--mid-gray);">(608) 555-0002</div>
+          <a href="mailto:brokerage@blackdeerig.com" style="font-size:12px;color:var(--accent);text-decoration:none;">brokerage@blackdeerig.com</a>
+          <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);font-size:11px;color:#aaa;">Acquisitions · Dispositions · Leasing</div>
+        </div>
+      </div>
+
+    </div>
+    <p style="text-align:center;font-size:11px;color:#aaa;margin-top:20px;">Replace placeholder cards with real headshots, names, and contact details.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     BUILD YOUR PLAN
+══════════════════════════════════════════ -->
+<section id="contact" style="background:var(--white);padding:80px 0;border-top:1px solid var(--border);">
+  <div style="max-width:1280px;margin:0 auto;padding:0 40px;">
+    <div style="margin-bottom:48px;">
+      <div class="label">Lead Generation</div>
+      <h2 style="font-size:clamp(26px,3vw,38px);font-weight:700;color:var(--black);letter-spacing:-.02em;">Build Your Management Plan</h2>
+      <p style="font-size:14px;color:var(--mid-gray);margin-top:10px;max-width:480px;line-height:1.7;">Select the services you need — no full-service package required.</p>
+    </div>
+
+    <div class="col-2" style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;">
+
+      <!-- Checkboxes -->
+      <div>
+        <div style="font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--mid-gray);margin-bottom:16px;">Select Your Services</div>
+        <div class="col-2-sm" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <label class="card" style="display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;font-size:12px;color:var(--black);">
+            <input type="checkbox" class="plan-check"/> Accounting &amp; Reporting
+          </label>
+          <label class="card" style="display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;font-size:12px;color:var(--black);">
+            <input type="checkbox" class="plan-check"/> Leasing Only
+          </label>
+          <label class="card" style="display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;font-size:12px;color:var(--black);">
+            <input type="checkbox" class="plan-check"/> Maintenance Coordination
+          </label>
+          <label class="card" style="display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;font-size:12px;color:var(--black);">
+            <input type="checkbox" class="plan-check"/> Vendor Management
+          </label>
+          <label class="card" style="display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;font-size:12px;color:var(--black);">
+            <input type="checkbox" class="plan-check"/> Capital Project Oversight
+          </label>
+          <label class="card" style="display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;font-size:12px;color:var(--black);">
+            <input type="checkbox" class="plan-check"/> Financial Reporting Only
+          </label>
+          <label class="card" style="display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;font-size:12px;color:var(--black);">
+            <input type="checkbox" class="plan-check"/> Rent Collection
+          </label>
+          <label class="card" style="display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;font-size:12px;color:var(--black);">
+            <input type="checkbox" class="plan-check"/> Full-Service Management
+          </label>
+          <label class="card" style="display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;font-size:12px;color:var(--black);">
+            <input type="checkbox" class="plan-check"/> Bank Receivership
+          </label>
+          <label class="card" style="display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;font-size:12px;color:var(--black);">
+            <input type="checkbox" class="plan-check"/> Budgeting Support
+          </label>
+        </div>
+        <p style="font-size:11px;color:#aaa;margin-top:14px;">Select services, fill out the form, and we'll be in touch within one business day.</p>
+      </div>
+
+      <!-- Form -->
+      <div style="background:var(--black);padding:36px;">
+        <h3 style="font-size:22px;font-weight:700;color:#fff;margin-bottom:6px;">Request a Proposal</h3>
+        <p style="font-size:13px;color:#666;margin-bottom:28px;">Tell us about your property and goals.</p>
+
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div>
+            <div style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#555;margin-bottom:6px;">Your Name</div>
+            <input type="text" placeholder="Jane Smith" class="form-input" style="background:#111;border-color:#333;color:#fff;"/>
+          </div>
+          <div>
+            <div style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#555;margin-bottom:6px;">Email Address</div>
+            <input type="email" placeholder="jane@company.com" class="form-input" style="background:#111;border-color:#333;color:#fff;"/>
+          </div>
+          <div>
+            <div style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#555;margin-bottom:6px;">Phone</div>
+            <input type="tel" placeholder="(608) 000-0000" class="form-input" style="background:#111;border-color:#333;color:#fff;"/>
+          </div>
+          <div>
+            <div style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#555;margin-bottom:6px;">Property Type</div>
+            <select class="form-input" style="background:#111;border-color:#333;color:#fff;">
+              <option value="">Select type…</option>
+              <option>Commercial Office</option>
+              <option>Retail</option>
+              <option>Industrial</option>
+              <option>Multifamily / Residential</option>
+              <option>Senior Housing</option>
+              <option>Mixed Use</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div>
+            <div style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#555;margin-bottom:6px;">Tell Us About Your Property</div>
+            <textarea rows="3" placeholder="Location, size, current situation, goals…" class="form-input" style="background:#111;border-color:#333;color:#fff;resize:vertical;"></textarea>
+          </div>
+          <button onclick="handleSubmit()" class="btn-accent" style="width:100%;padding:14px;text-align:center;">Send Request →</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     INVESTOR PORTAL
+══════════════════════════════════════════ -->
+<section id="investors" style="background:var(--black);padding:80px 0;">
+  <div style="max-width:1280px;margin:0 auto;padding:0 40px;">
+    <div class="col-2" style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;">
+
+      <div>
+        <div class="label">Capital Partners</div>
+        <h2 style="font-size:clamp(26px,3vw,40px);font-weight:700;color:#fff;letter-spacing:-.02em;margin-bottom:16px;">Investment Opportunities</h2>
+        <p style="font-size:14px;color:#777;line-height:1.85;margin-bottom:36px;">Blackdeer offers accredited investors access to curated Midwest real estate — stabilized income assets, value-add plays, and development projects. We invest alongside our partners.</p>
+
+        <div style="display:flex;flex-direction:column;gap:20px;">
+          <div style="display:flex;gap:16px;align-items:flex-start;">
+            <div style="width:6px;height:6px;background:var(--accent);border-radius:50%;margin-top:6px;flex-shrink:0;"></div>
+            <div>
+              <div style="font-size:14px;font-weight:600;color:#ddd;">Stabilized Income Assets</div>
+              <div style="font-size:12px;color:#666;margin-top:3px;">Commercial and residential assets with strong in-place cash flow.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:flex-start;">
+            <div style="width:6px;height:6px;background:var(--accent);border-radius:50%;margin-top:6px;flex-shrink:0;"></div>
+            <div>
+              <div style="font-size:14px;font-weight:600;color:#ddd;">Value-Add Opportunities</div>
+              <div style="font-size:12px;color:#666;margin-top:3px;">Repositioning plays where our operational expertise drives returns.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:flex-start;">
+            <div style="width:6px;height:6px;background:var(--accent);border-radius:50%;margin-top:6px;flex-shrink:0;"></div>
+            <div>
+              <div style="font-size:14px;font-weight:600;color:#ddd;">Development Projects</div>
+              <div style="font-size:12px;color:#666;margin-top:3px;">Ground-up and redevelopment projects with significant upside potential.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:flex-start;">
+            <div style="width:6px;height:6px;background:var(--accent);border-radius:50%;margin-top:6px;flex-shrink:0;"></div>
+            <div>
+              <div style="font-size:14px;font-weight:600;color:#ddd;">Secure Investor Portal</div>
+              <div style="font-size:12px;color:#666;margin-top:3px;">Login anytime to review holdings, reports, and new opportunities.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="border:1px solid #222;padding:44px;text-align:center;">
+        <div style="width:56px;height:56px;border:1px solid #333;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:24px;">🔐</div>
+        <h3 style="font-size:22px;font-weight:700;color:#fff;margin-bottom:10px;">Investor Portal</h3>
+        <p style="font-size:13px;color:#777;line-height:1.75;margin-bottom:28px;">Access your investment account, review current opportunities, and track portfolio performance.</p>
+        <a href="#" class="btn-accent" style="display:block;text-align:center;margin-bottom:12px;">Log In to Portal →</a>
+        <a href="mailto:info@blackdeerig.com" class="btn-outline" style="display:block;text-align:center;">Contact Investment Team</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer style="background:var(--off-black);border-top:1px solid #222;padding:56px 0 28px;">
+  <div style="max-width:1280px;margin:0 auto;padding:0 40px;">
+    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px;" class="col-2">
+
+      <div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+          <img src="images/logo.png" alt="Blackdeer" style="height:28px;width:auto;filter:invert(1);display:block;" onerror="this.style.display='none'"/>
+          <span style="font-size:14px;font-weight:700;color:#fff;letter-spacing:.06em;text-transform:uppercase;">Blackdeer</span>
+        </div>
+        <p style="font-size:12px;color:#555;line-height:1.85;max-width:240px;">Commercial &amp; Residential Property Management · Development · Brokerage · Investments</p>
+        <div style="margin-top:16px;font-size:12px;color:#444;line-height:1.85;">
+          1609 Landmark Drive<br/>Cottage Grove, WI 53527<br/>
+          <a href="mailto:info@blackdeerig.com" style="color:var(--accent);text-decoration:none;">info@blackdeerig.com</a>
         </div>
       </div>
 
       <div>
-        <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">Services</div>
-        <ul class="space-y-2 text-sm text-slate-500">
-          <li><a href="#services" class="hover:text-slate-800">Commercial PM</a></li>
-          <li><a href="#services" class="hover:text-slate-800">Residential PM</a></li>
-          <li><a href="#services" class="hover:text-slate-800">Development</a></li>
-          <li><a href="#services" class="hover:text-slate-800">Brokerage</a></li>
-          <li><a href="#contact" class="hover:text-slate-800">Custom Plans</a></li>
-        </ul>
+        <div style="font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#444;margin-bottom:16px;">Services</div>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:12px;color:#555;">
+          <a href="#services" style="color:#555;text-decoration:none;hover:color:#fff">Commercial PM</a>
+          <a href="#services" style="color:#555;text-decoration:none;">Residential PM</a>
+          <a href="#services" style="color:#555;text-decoration:none;">Development</a>
+          <a href="#services" style="color:#555;text-decoration:none;">Brokerage</a>
+          <a href="#contact"  style="color:#555;text-decoration:none;">Custom Plans</a>
+        </div>
       </div>
 
       <div>
-        <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">Company</div>
-        <ul class="space-y-2 text-sm text-slate-500">
-          <li><a href="#team" class="hover:text-slate-800">Our Team</a></li>
-          <li><a href="#properties" class="hover:text-slate-800">Properties</a></li>
-          <li><a href="#partners" class="hover:text-slate-800">Partners</a></li>
-        </ul>
+        <div style="font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#444;margin-bottom:16px;">Company</div>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:12px;">
+          <a href="#team"       style="color:#555;text-decoration:none;">Our Team</a>
+          <a href="#properties" style="color:#555;text-decoration:none;">Properties</a>
+          <a href="#partners"   style="color:#555;text-decoration:none;">Partners</a>
+        </div>
       </div>
 
       <div>
-        <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">Investors</div>
-        <ul class="space-y-2 text-sm text-slate-500">
-          <li><a href="#investors" class="hover:text-slate-800">Investor Portal</a></li>
-          <li><a href="#investors" class="hover:text-slate-800">Opportunities</a></li>
-          <li><a href="mailto:info@blackdeerig.com" class="hover:text-slate-800">Contact</a></li>
-        </ul>
+        <div style="font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#444;margin-bottom:16px;">Investors</div>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:12px;">
+          <a href="#investors" style="color:#555;text-decoration:none;">Investor Portal</a>
+          <a href="#investors" style="color:#555;text-decoration:none;">Opportunities</a>
+          <a href="mailto:info@blackdeerig.com" style="color:#555;text-decoration:none;">Contact</a>
+        </div>
       </div>
 
     </div>
 
-    <div class="border-t border-slate-100 pt-6 flex flex-col md:flex-row justify-between gap-2 text-sm text-slate-400">
-      <span>© 2025 Blackdeer Investment Group. All rights reserved.</span>
-      <span>blackdeerig.com</span>
+    <div style="border-top:1px solid #1a1a1a;padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+      <span style="font-size:11px;color:#333;">© 2025 Blackdeer Investment Group. All rights reserved.</span>
+      <span style="font-size:11px;color:#333;">blackdeerig.com</span>
     </div>
   </div>
 </footer>
 
 <script>
+  /* ── Mobile nav ── */
+  const hamburger = document.getElementById('hamburger');
+  const allHide = document.querySelectorAll('.hide-m');
+  const allShow = document.querySelectorAll('.show-m');
+
+  // On mobile, hide desktop nav items and show hamburger
+  function checkMobile() {
+    if (window.innerWidth < 900) {
+      allHide.forEach(el => el.style.display = 'none');
+      hamburger.style.display = 'flex';
+    } else {
+      allHide.forEach(el => el.style.display = '');
+      hamburger.style.display = 'none';
+      document.getElementById('mobile-menu').classList.remove('open');
+    }
+  }
+  window.addEventListener('resize', checkMobile);
+  checkMobile();
+
   function toggleMenu() {
-    const m = document.getElementById('mobile-menu');
-    m.classList.toggle('open');
+    document.getElementById('mobile-menu').classList.toggle('open');
   }
 
   function handleSubmit() {
     alert('Thank you! A Blackdeer team member will contact you within one business day.');
   }
 
-  // Smooth scroll for all anchor links
+  /* ── Smooth scroll ── */
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       const id = a.getAttribute('href');
@@ -709,5 +774,6 @@
     });
   });
 </script>
+
 </body>
 </html>
